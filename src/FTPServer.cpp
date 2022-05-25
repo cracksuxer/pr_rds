@@ -46,7 +46,7 @@ int define_socket_TCP(int port){
     if (bind(sck, (struct sockaddr*)&sin, sizeof(sin)) < 0)
         errexit("Could not make bind to specified port: %s\n", strerror(errno));
 
-    if (listen(sck,5) < 0)
+    if (listen(sck, 5) < 0)
         errexit("Listen error: %s\n", strerror(errno));
   
     return sck;

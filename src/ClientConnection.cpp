@@ -326,58 +326,6 @@ void ClientConnection::WaitForRequests(){
       }
     } 
     
-    // rename
-    else if (COMMAND("RNFR")){
-      fscanf(fd, "%s", arg);
-      printf("RNFR: %s\n", arg);
-
-      fprintf(fd, "350 Requested file action pending further information.\n");
-    } 
-    
-    // rename
-    else if (COMMAND("RNTO")){
-      fscanf(fd, "%s", arg2);
-      printf("RNTO: %s\n", arg2);
-
-      if (rename(arg,arg2) < 0)
-          fprintf(fd, "550 Failed to rename file.\n");
-      else
-          fprintf (fd, "250 File successfully renamed.\n"); 
-    } 
-    
-    // del
-    else if (COMMAND("DELE")){
-      fscanf(fd, "%s", arg);
-      printf("DELE: %s\n", arg);
-
-      if (remove(arg) < 0)
-        fprintf(fd, "550 Failed to delete file.\n");
-      else
-        fprintf (fd, "250 File successfully deleted.\n"); 
-    } 
-    
-    // mkdir
-    else if (COMMAND("MKD")){
-      fscanf(fd, "%s", arg);
-      printf("MKD: %s\n", arg);
-
-      if (mkdir(arg, 0755) < 0)
-        fprintf(fd, "550 Failed to create directory.\n");
-      else
-        fprintf (fd, "257 Directory successfully created.\n"); 
-    } 
-    
-    // rmdir
-    else if (COMMAND("RMD")){
-      fscanf(fd, "%s", arg);
-      printf("RMD: %s\n", arg);
-
-      if (rmdir(arg) < 0)
-        fprintf(fd, "550 Failed to remove directory.\n");
-      else
-        fprintf (fd, "250 Directory successfully removed.\n"); 
-    } 
-    
     
     else {
       fprintf(fd, "502 Command not implemented.\n"); fflush(fd);
