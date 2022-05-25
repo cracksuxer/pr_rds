@@ -65,8 +65,8 @@ ClientConnection::ClientConnection(int s, unsigned long ip) {
 }
 
 ClientConnection::~ClientConnection() {
- 	fclose(fd);
-	close(control_socket); 
+  fclose(fd);
+  close(control_socket); 
 }
 
 int connect_TCP(uint32_t address, uint16_t port) {
