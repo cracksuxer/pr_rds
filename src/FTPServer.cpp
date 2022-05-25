@@ -30,7 +30,7 @@
 
 
 
-int define_socket_TCP(int port){
+int define_socket_TCP(int port) {
 
     struct sockaddr_in sin;
     int sck = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,25 +53,25 @@ int define_socket_TCP(int port){
 }
 
 // This function is executed when the thread is executed.
-void* run_client_connection(void *c){
+void* run_client_connection(void *c) {
   ClientConnection *connection = (ClientConnection *)c;
   connection->WaitForRequests();
 
   return NULL;
 }
 
-FTPServer::FTPServer(int port){
+FTPServer::FTPServer(int port) {
   this->port = port;
 }
 
 // Parada del servidor.
-void FTPServer::stop(){
+void FTPServer::stop() {
   close(msock);
   shutdown(msock, SHUT_RDWR);
 }
 
 // Starting of the server
-void FTPServer::run(){
+void FTPServer::run() {
 
   struct sockaddr_in fsin;
   int ssock;
@@ -79,7 +79,7 @@ void FTPServer::run(){
 
   msock = define_socket_TCP(port);
   
-  while (1){
+  while (1) {
     pthread_t thread;
     ssock = accept(msock, (struct sockaddr *)&fsin, &alen);
 
